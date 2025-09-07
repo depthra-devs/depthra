@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Groundwater Data</title>
+</head>
+<body>
+  <h1>Groundwater Data</h1>
+  <h6>takes time to generate. do wait</h6>
+  <pre id="output"></pre>
+
+  <script>
+    var out = document.getElementById("output")
+    fetch("http://localhost:3000/app/depthra?stateName=tamil%20nadu&districtName=chennai&agencyName=cgwb&startdate=2024-01-01&enddate=2024-12-31&download=false&page=0&size=1000")
+      .then(res => res.json())
+      .then(data => {
+        data.data.forEach(data => {
+            out.innerHTML += "</br>" + JSON.stringify(data)
+        })
+      })
+      .catch(err => console.error(err));
+  </script>
+</body>
+</html>
