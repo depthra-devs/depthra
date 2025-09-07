@@ -20,7 +20,7 @@ both of which should give their respective versions
 
 to clone the project :-
 
-    `it clone https://github.com/team/repo-name.git
+    git clone https://github.com/team/repo-name.git
 
 > **Note :** make sure to change the directory to the preffered before cloning, as it will copy all the files and folders to your local.
 
