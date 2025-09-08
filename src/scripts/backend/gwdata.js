@@ -19,4 +19,4 @@ function fetch_gw_dataset(state, district, agency, startdate, enddate, download 
     });
 }
 
-fetch_gw_dataset("tamil nadu", "chennai", "cgwb", "2024-01-01", "2024-12-31")
+fetch_gw_dataset("Tamil Nadu", "Tiruchirappalli", "cgwb", "2024-01-01", "2024-12-31")
