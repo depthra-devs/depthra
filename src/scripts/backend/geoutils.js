@@ -165,7 +165,6 @@ function get_neighbours_address(coords, home_addr, nbr_count_perdir = 1, callbac
 
 function get_map(display_element_id) {
     var map = L.map(display_element_id, {
-        center : [20.5937, 78.9629],
         zoom: 10,
         maxZoom : 19,
         minZoom : 2,

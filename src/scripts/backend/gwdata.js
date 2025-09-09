@@ -38,9 +38,3 @@ function fetch_telemetric_gw_dataset(state, district, agency, startdate, enddate
         }
     })
 }
-
-fetch_gw_dataset("Tamil Nadu", "chennai", "cgwb", "2024-01-01", "2025-01-02", false, 7, 1000, function(data, status) {
-    data.forEach(dat => {
-            document.getElementById("output").innerHTML += JSON.stringify(dat) + "<br>"
-    });
-})
