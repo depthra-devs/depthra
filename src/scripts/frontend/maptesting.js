@@ -22,3 +22,4 @@ set_map_markevent(map, function(coords) {
         }
     })
 })
+
