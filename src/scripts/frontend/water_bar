@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Level Card</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .water-bar-container {
+            width: 80px;
+            height: 180px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            background-color: #e6f7ff;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .water {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to bottom, #00c6ff, #007bff);
+            transition: height 1s ease-in-out;
+            z-index: 1;
+        }
+        .water::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -25%;
+            width: 150%;
+            height: 20px;
+            background: rgba(0, 198, 255, 0.5);
+            border-radius: 50%;
+            animation: wave 4s infinite linear;
+        }
+
+        @keyframes wave {
+            0% { transform: translateX(0); }
+            50% { transform: translateX(20%); }
+            100% { transform: translateX(0); }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+    <div class="w-full max-w-sm p-6 bg-white rounded-xl shadow-lg transform transition-all hover:scale-105 duration-300">
+        <div class="flex items-center space-x-6">
+            <!-- Water Level Bar Section -->
+            <div class="relative">
+                <div class="water-bar-container">
+                    <div id="waterLevelBar" class="water"></div>
+                </div>
+            </div>
+            <!-- Information Section -->
+            <div class="flex-1">
+                <div class="flex flex-col justify-center h-full">
+                    <h1 id="districtName" class="text-3xl font-bold text-gray-800 mb-0">District Name</h1>
+                    <p id="stateName" class="text-gray-500 text-sm mb-2">State Name</p>
+                    <hr class="my-3 border-gray-200">
+                    <p id="lastUpdated" class="text-gray-400 text-xs mb-1">Last Updated: Just now</p>
+                    <h2 id="waterLevelReading" class="text-blue-500 font-extrabold text-4xl">0.0m</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+    // Naveed Section //
+    // --- Backend Integration Section ---
+    async function fetchWaterLevelData() {
+        try {
+            
+
+        } catch (error) {
+            console.error("Failed to fetch water level data:", error);
+        }
+    }
+
+    // Function to update the UI elements from Nav
+    function updateUI(data) {
+        document.getElementById('districtName').textContent = data.district;
+        document.getElementById('stateName').textContent = data.state;
+        document.getElementById('waterLevelReading').textContent = `${data.waterLevel.toFixed(1)}m`;
+        document.getElementById('lastUpdated').textContent = `Last Updated: ${data.lastUpdatedMinutes} min ago`;
+        
+        // Calculate the percentage for water bar
+        const percentage = ((data.maxWaterLevel - data.waterLevel) / data.maxWaterLevel) * 100;
+        
+        // Update the height of the water level bar with animation
+        const waterBar = document.getElementById('waterLevelBar');
+        waterBar.style.height = `${percentage}%`;
+    }
+
+    // Initial fetch of data when the page loads
+    window.onload = function() {
+        fetchWaterLevelData();
+    };
+</script>
+</body>
+</html>
