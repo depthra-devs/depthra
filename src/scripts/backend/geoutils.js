@@ -27,7 +27,7 @@ function get_address(latitude, longtitude, callback = function(address, status) 
         return res.json()
     })
     .then(address => {
-        callback(address, 1)
+        callback(address, 1);
     })
     .catch(err => {
         callback(err, -1)
@@ -164,7 +164,16 @@ function get_neighbours_address(coords, home_addr, nbr_count_perdir = 1, callbac
 //assuming leaflet.js is loaded
 
 function get_map(display_element_id) {
-    var map = L.map("map").setView([20.5937, 78.9629], 5)
+    var map = L.map(display_element_id, {
+        center : [20.5937, 78.9629],
+        zoom: 10,
+        maxZoom : 19,
+        minZoom : 2,
+        maxBounds: [
+            [-90, -180],
+            [90, 180]
+        ],
+        maxBoundsViscosity: 1.0}).setView([20.5937, 78.9629], 5)
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {maxZoom: 19}).addTo(map)
     return map
 }
@@ -184,14 +193,3 @@ function set_map_markevent(map, callback = function(coords) {console.log(coords)
         callback([lat, lng])
     })
 }
-
-var map = get_map("map")
-var marker = null
-
-set_map_markevent(map, function(coords) {
-    if (marker) remove_marker_on_map(map, marker)
-    marker = add_marker_on_map(coords, map)
-    get_address(coords[0], coords[1], function(address, status) {
-        get_neighbours_address(coords, [address.state, address.state_district])
-    })
-})
