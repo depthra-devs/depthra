@@ -35,7 +35,7 @@ function get_address(latitude, longtitude, callback = function(address, status) 
 }
 
 function get_neighbours_address(coords, home_addr, nbr_count_perdir = 1, callback = function(addresses, status) {console.log(addresses, status)}) {
-    const MAX_TRY_COUNT_PERDIR = 15
+    const MAX_TRY_COUNT_PERDIR = nbr_count_perdir * 2
     var neighbour_addr_east = []
     var neighbour_addr_south = []
     var neighbour_addr_west = []

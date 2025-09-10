@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
     <link rel="stylesheet" href="./waterbar.css">
+    <link rel="stylesheet" href="./loader.css">
 </head>
 <body class="user-select-none">
 <div class="container">
@@ -20,8 +21,12 @@
                     <h5 class="mb-0 fw-semibold text-secondary"><i class="bi bi-geo-alt-fill"></i> Select your location</h5>
                 </div>
                 <!-- Map Container -->
-                <div id="map-container" class="border border-dotted border-secondary border-opacity-25 rounded-3 bg-light d-flex justify-content-center align-items-center" style="height: 380px;">
+                <div id="map-container" class="border border-dark-subtle rounded-2 bg-dark d-flex justify-content-center align-items-center" style="height: 380px;">
                     <h2 class="fw-semibold text-dark">Interactive Map View</h2>
+                    <div id="map-overlay" class="map-overlay rounded-2 d-flex align-items-center justify-content-center">
+                        <div class="loader-onmap"></div>
+                        <div id="loader-label" class="text-center">fetching data</div>
+                    </div>
                 </div>
                 <!-- Selected Location -->
                 <div class="mt-3">

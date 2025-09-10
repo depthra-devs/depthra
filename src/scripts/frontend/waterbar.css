@@ -75,3 +75,23 @@ body {
     color: white;
     transition: color 1s ease-in-out;
 }
+
+.map-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(22, 26, 41, 0.795);
+  backdrop-filter: blur(6px);
+  z-index: 1500;
+}
+
+/* Visible state */
+.map-overlay.active {
+  display: flex; /* show it as flex container */
+}
+
+
+#loader-label {
+    font-family: gefika;
+    color: #ffffff31;
+}

@@ -28,7 +28,12 @@ function fetch_telemetric_gw_dataset(state, district, agency, startdate, enddate
                     data_set.push(dat)
                 }
             })
-            callback(data_set, 1)
+            if (data_set.length == 0) {
+                callback([], 0)
+            }
+            else {
+                callback(data_set, 1)
+            }
         }
         else if (status == 0) {
             callback([], 0)
