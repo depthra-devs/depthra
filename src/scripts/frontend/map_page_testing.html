@@ -1,37 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Live Map</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
     <link rel="stylesheet" href="./waterbar.css">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 10px;
-        }
-    </style>
 </head>
-<body>
+<body class="user-select-none">
 <div class="container">
     <div class="row">
         <div class="col">
-        <div class="card shadow-lg rounded-5">
+        <div class="card rounded-5">
             <div class="card-body p-4">
                 <div class="d-flex align-items-center mb-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="me-2" width="24" height="24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 1.288-2.33 5.488-7.5 9.5-5.17-4.012-7.5-8.212-7.5-9.5a7.5 7.5 0 1115 0z" />
-                    </svg>
-                    <h5 class="mb-0 fw-semibold text-secondary">Station Locations</h5>
+                    <h5 class="mb-0 fw-semibold text-secondary"><i class="bi bi-geo-alt-fill"></i> Select your location</h5>
                 </div>
                 <!-- Map Container -->
                 <div id="map-container" class="border border-dotted border-secondary border-opacity-25 rounded-3 bg-light d-flex justify-content-center align-items-center" style="height: 380px;">
@@ -47,33 +33,67 @@
         </div>
     </div>
     <div class="row">
-        <div class="col d-flex justify-content-center">
-            <div class="card shadow-lg border-0 rounded-5 p-4 my-3" style="max-width: 24rem; transition: transform 0.3s;">
+        <div class="col">
+            <div class="card border-0 rounded-5 p-4 m-3" style="max-width: 24rem; transition: transform 0.3s;">
+                <h5 class="mb-0 fw-bold text-center mb-3 borde">Ground Water level</h5>
                 <div class="d-flex align-items-center">
                     <!-- Water Level Bar Section -->
                     <div class="me-4">
                         <div class="position-relative">
                             <div class="water-bar-container">
-                                <div id="waterLevelBar" class="water"></div>
+                                <div id="waterLevelBar" class="water text-center">9.5</div>
                             </div>
                         </div>
                     </div>
                     <!-- Information Section -->
                     <div class="flex-grow-1">
                         <div class="d-flex flex-column justify-content-center h-100">
-                            <h1 id="districtName" class="h4 fw-bold text-dark mb-0">District Name</h1>
+                            <h1 id="districtName" class="h4 fw-bold mb-0">District Name</h1>
                             <p id="stateName" class="text-muted small mb-2">State Name</p>
                             <hr class="my-2">
-                            <p id="lastUpdated" class="text-muted small mb-1">Last Updated: Just now</p>
-                            <h2 id="waterLevelReading" class="text-primary fw-bold display-6">0.0m</h2>
+                            <p id="lastUpdated" class="text-muted small mb-1">Data from : </p>
+                            <p class="text-info fw-bold d-flex align-items-center"><span class="display-6" id="waterLevelReading">0.0m</span></p>
+                            <hr class="m-0">
+                            <p class="small bg-transparent mt-2" id="waterlevel-comment">-</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="col">
+            <div class="card border-0 rounded-5 p-4 m-3" style="max-width: 24rem; transition: transform 0.3s;">
+                    <!-- Water Level Bar Section -->
+                    <div>
+                        <h5 class="mb-0 fw-bold text-center">Ground Water level history</h5>
+                        <p id="districtName-history" class="text-muted small mb-2 text-center">District Name</p>
+                        <div class="position-relative d-flex justify-content-center">
+                            <div class="water-bar-container2">
+                                <div id="waterLevelBar" class="water"></div>
+                            </div>
+                            <div class="water-bar-container2">
+                                <div id="waterLevelBar" class="water"></div>
+                            </div>
+                            <div class="water-bar-container2">
+                                <div id="waterLevelBar" class="water"></div>
+                            </div>
+                            <div class="water-bar-container2">
+                                <div id="waterLevelBar" class="water"></div>
+                            </div>
+                            <div class="water-bar-container2">
+                                <div id="waterLevelBar" class="water"></div>
+                            </div>
+                            <div class="water-bar-container2">
+                                <div id="waterLevelBar" class="water"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Information Section -->
+                </div>
+        </div>
     </div>
 </div>
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="../backend/datetime.js"></script>
 <script src="../backend/gwdata.js"></script>
 <script src="../backend/geoutils.js"></script>
 <script src="./maptesting.js"></script>
