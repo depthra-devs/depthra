@@ -6,10 +6,10 @@
     <title>Live Map</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
     <link rel="stylesheet" href="./waterbar.css">
     <link rel="stylesheet" href="./loader.css">
+    <link rel="stylesheet" href="./chart.css">
 </head>
 <body class="user-select-none">
 <div class="container">
@@ -68,40 +68,23 @@
         <div class="col">
             <div class="card border-0 rounded-5 p-4 m-3" style="max-width: 24rem; transition: transform 0.3s;">
                     <!-- Water Level Bar Section -->
-                    <div>
                         <h5 class="mb-0 fw-bold text-center">Ground Water level history</h5>
                         <p id="districtName-history" class="text-muted small mb-2 text-center">District Name</p>
-                        <div class="position-relative d-flex justify-content-center">
-                            <div class="water-bar-container2">
-                                <div id="waterLevelBar" class="water"></div>
-                            </div>
-                            <div class="water-bar-container2">
-                                <div id="waterLevelBar" class="water"></div>
-                            </div>
-                            <div class="water-bar-container2">
-                                <div id="waterLevelBar" class="water"></div>
-                            </div>
-                            <div class="water-bar-container2">
-                                <div id="waterLevelBar" class="water"></div>
-                            </div>
-                            <div class="water-bar-container2">
-                                <div id="waterLevelBar" class="water"></div>
-                            </div>
-                            <div class="water-bar-container2">
-                                <div id="waterLevelBar" class="water"></div>
-                            </div>
+                        <div id="chart-container">
+                            <canvas id="water-level-history-chart"></canvas>
                         </div>
-                    </div>
                     <!-- Information Section -->
                 </div>
         </div>
     </div>
 </div>
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="../backend/datetime.js"></script>
 <script src="../backend/gwdata.js"></script>
 <script src="../backend/geoutils.js"></script>
 <script src="./maptesting.js"></script>
 <script src="./waterbar.js"></script>
+<script src="./chart.js"></script>
 </body>
 </html>

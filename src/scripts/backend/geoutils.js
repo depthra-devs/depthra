@@ -27,7 +27,12 @@ function get_address(latitude, longtitude, callback = function(address, status) 
         return res.json()
     })
     .then(address => {
-        callback(address, 1);
+        if (address.state == undefined || address.state_district == undefined) {
+            callback({}, 0)
+        }
+        else {
+            callback(address, 1);
+        }
     })
     .catch(err => {
         callback(err, -1)

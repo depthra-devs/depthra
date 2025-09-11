@@ -85,9 +85,8 @@ body {
   z-index: 1500;
 }
 
-/* Visible state */
 .map-overlay.active {
-  display: flex; /* show it as flex container */
+  display: flex; 
 }
 
 

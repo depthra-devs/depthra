@@ -66,6 +66,7 @@ function update_gw_data(address, coords) {
         var water_level_total = 0
         data.forEach(dat => {
             water_level_total += dat.dataValue
+            
         })
         var average_water_level = water_level_total / data.length
         average_water_level = Math.abs(average_water_level)
@@ -73,6 +74,7 @@ function update_gw_data(address, coords) {
         updateUI({state : address.state, district : address.state_district, waterLevel : average_water_level, maxWaterLevel : 50, data_range : 3})
     })
 }
+
 
 set_map_markevent(map, function(coords) {
     if (map_disabled) return

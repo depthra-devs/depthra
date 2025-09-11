@@ -1,14 +1,4 @@
-// Naveed Section //
-    // --- Backend Integration Section ---
-async function fetchWaterLevelData() {
-    try {
-            
 
-    }
-    catch (error) {
-        console.error("Failed to fetch water level data:", error);
-    }
-}
 
 const comments = [["excellent", "#bdff3ab9"], ["good", "#319ebc82"], ["normal", "#799fa88b"], ["low", "#f388249c"], ["critical", "#ff494998"]]
 
@@ -30,21 +20,17 @@ function get_comment(percentage) {
     }
 }
 
-// Function to update the UI elements from Nav
 function updateUI(data) {
     document.getElementById('districtName').textContent = data.district;
     document.getElementById('stateName').textContent = data.state;
     document.getElementById('waterLevelReading').textContent = `${data.waterLevel.toFixed(1)}m`;
     document.getElementById('lastUpdated').textContent = `Data from : past ${data.data_range} days`;
-        
-    // Calculate the percentage for water bar
+
     var percentage = ((data.maxWaterLevel - data.waterLevel) / data.maxWaterLevel) * 100;
     if (percentage < 0) {
         percentage = 0
     }
     const comment = get_comment(percentage)
-        
-    // Update the height of the water level bar with animation
     const waterBar = document.getElementById('waterLevelBar');
     waterBar.style.height = `${percentage}%`;
     waterBar.innerHTML = `${(percentage / 10).toFixed(1)}`
@@ -53,8 +39,3 @@ function updateUI(data) {
     waterlevel_comment.innerHTML = comment[0]
     waterlevel_comment.style.color = comment[1]
 }
-
-    // Initial fetch of data when the page loads
-window.onload = function() {
-    fetchWaterLevelData();
-};
